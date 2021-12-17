@@ -23,5 +23,5 @@ jobs:
         PASSWORD: ${{ secrets.PASSWORD }}
       run: |
         bash Init_Building_Dependencies.sh
-        start cmd /K go-cqhttp.exe
+        ./go-cqhttp.bat
         python3 main.py
