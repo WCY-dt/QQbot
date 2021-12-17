@@ -1,4 +1,4 @@
-name: SEU-NewCourseElection-Helper
+name: QQbot
 on:
   schedule:
     - cron: '00 * * * *'
