@@ -1,0 +1,27 @@
+name: SEU-NewCourseElection-Helper
+on:
+  schedule:
+    - cron: '00 * * * *'
+  watch:
+    types: started
+  workflow_dispatch: 
+
+jobs:
+  Grab:
+    runs-on: windows-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+      with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+    - name: Run
+      env:
+        QQ: ${{ secrets.QQ }}
+        PASSWORD: ${{ secrets.PASSWORD }}
+      run: |
+        bash Init_Building_Dependencies.sh
+        start cmd /K go-cqhttp.exe
+        python3 main.py
